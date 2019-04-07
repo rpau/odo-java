@@ -16,8 +16,21 @@ jobs:
         paths:
         - ~/.m2
 
+  octopatch:
+    machine: true
+    steps:
+        - checkout
+        - run:
+            name: Generate patch files (diffs)
+            command: echo '[ACTION REQUIRED] Replace this line by a command that generates a .patch file'
+
+        - run:
+            name: Upload patch files to octopatch
+            command: ./fixup.sh
+
 workflows:
   version: 2
   all:
     jobs:
     - build
+    - octopatch
